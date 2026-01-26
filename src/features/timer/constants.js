@@ -1,5 +1,5 @@
 export const TIMER_CONSTANTS = {
-    STUDY_TIME: 50 * 60, // 50분을 초 단위로 변환
+    STUDY_TIME: 5, // 50분을 초 단위로 변환
     BREAK_TIME: 10 * 60, // 10분을 초 단위로 변환
 };
 
