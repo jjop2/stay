@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.button {
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    /* 알약 모양 */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    font-family: inherit;
+    /* 폰트 상속 강제 적용 */
+}
+
+.button:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.start {
+    background-color: #93c5fd;
+    /* 파스텔 블루 */
+    color: #1e3a8a;
+}
+
+.start:hover:not(:disabled) {
+    background-color: #60a5fa;
+}
+
+.pause {
+    background-color: #fef08a;
+    /* 연한 파스텔 옐로우 (Yellow 200) */
+    color: #854d0e;
+}
+
+.pause:hover:not(:disabled) {
+    background-color: #fde047;
+}
+
+.stop {
+    background-color: #fca5a5;
+    /* 파스텔 레드 */
+    color: #7f1d1d;
+}
+
+.stop:hover:not(:disabled) {
+    background-color: #f87171;
+}

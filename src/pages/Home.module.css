@@ -1,0 +1,54 @@
+.container {
+    min-height: 100vh;
+    min-height: 100dvh;
+    /* 모바일 대응 동적 높이 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; 제거 -> content가 담당 */
+    padding: 1rem;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    /* 마진 축소 */
+    letter-spacing: -0.02em;
+
+    /* 텍스트 그라데이션 */
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    /* 표준 속성 미지원 브라우저 대비 */
+
+    /* 입체감을 위한 그림자 */
+    filter: drop-shadow(0 2px 4px rgba(236, 72, 153, 0.2));
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    padding: 3.5rem;
+    border-radius: 2.5rem;
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.05),
+        0 8px 10px -6px rgba(0, 0, 0, 0.01),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+}

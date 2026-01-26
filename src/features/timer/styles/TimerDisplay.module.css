@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.time {
+  font-size: 6.5rem;
+  font-weight: 700;
+  font-family: 'Jua', sans-serif;
+  /* 숫자는 항상 Jua */
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: #4b5563;
+  /* 부드러운 다크 그레이 */
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+
+  /* 너비 고정 및 흔들림 방지 */
+  width: 4.8ch;
+  /* 00:00 (5글자)에 맞는 적절한 너비 */
+  text-align: center;
+
+  /* 수직 중앙 정렬 보정 */
+  padding-top: 0.1ch;
+  transform: translateY(-5px);
+  /* 폰트 특성에 따른 미세 조정 */
+}
+
+.mode {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1.75rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.study {
+  color: #be185d;
+  /* 진한 핑크 */
+  background-color: #fce7f3;
+  /* 연한 핑크 */
+  border: 2px solid #fbcfe8;
+}
+
+.break {
+  color: #047857;
+  /* 진한 초록 (롤백) */
+  background-color: #d1fae5;
+  /* 연한 민트 (롤백) */
+  border: 2px solid #a7f3d0;
+}
