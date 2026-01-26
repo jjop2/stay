@@ -60,3 +60,15 @@
 .stop:hover:not(:disabled) {
     background-color: #f87171;
 }
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+    .container {
+        gap: 0.75rem;
+    }
+
+    .button {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+}

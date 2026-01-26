@@ -54,3 +54,21 @@
   /* 연한 민트 (롤백) */
   border: 2px solid #a7f3d0;
 }
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+  .time {
+    font-size: 4.5rem;
+    transform: translateY(-2px); /* 모바일 미세 조정 */
+  }
+
+  .mode {
+    font-size: 1rem;
+    padding: 0.4rem 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .container {
+    margin-bottom: 1.5rem;
+  }
+}

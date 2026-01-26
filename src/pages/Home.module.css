@@ -52,3 +52,22 @@
     width: 100%;
     max-width: 480px;
 }
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .card {
+        padding: 2rem 1.5rem;
+        border-radius: 2rem;
+        width: 100%;
+        /* 더 넓게 수정 */
+    }
+}
