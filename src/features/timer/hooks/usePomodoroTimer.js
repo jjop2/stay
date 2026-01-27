@@ -26,12 +26,30 @@ export const usePomodoroTimer = () => {
         }
     };
 
-    const notifyUser = useCallback((message) => {
+    const notifyUser = useCallback(async (message) => {
         // 소리 알림 재생
         playAlert();
 
         // 브라우저 알림 표시
         if (Notification.permission === 'granted') {
+            try {
+                // 모바일 지원을 위해 Service Worker를 통한 알림 우선 시도
+                const registration = await navigator.serviceWorker.ready;
+                if (registration && 'showNotification' in registration) {
+                    await registration.showNotification('Stay Timer', {
+                        body: message,
+                        icon: '/favicon.png',
+                        badge: '/favicon.png',
+                        requireInteraction: true,
+                        vibrate: [200, 100, 200], // 모바일 진동 추가
+                    });
+                    return;
+                }
+            } catch (error) {
+                console.log('Service Worker notification failed, falling back to standard API', error);
+            }
+
+            // Fallback: 표준 Notification API
             new Notification('Stay Timer', {
                 body: message,
                 icon: '/favicon.png',
