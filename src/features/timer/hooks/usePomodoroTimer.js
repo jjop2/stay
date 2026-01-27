@@ -16,7 +16,7 @@ export const usePomodoroTimer = () => {
     const [isRunning, setIsRunning] = useState(false);
     const [isActive, setIsActive] = useState(false); // 중지 버튼 활성화/비활성화 제어
 
-    const timerRef = useRef(null);
+    const timerWorkerRef = useRef(null);
     const { volume, setVolume, isMuted, setIsMuted, playAlert } = useAudioAlert();
 
     // 최초 시작 시 브라우저 알림 권한 요청
@@ -37,6 +37,7 @@ export const usePomodoroTimer = () => {
                 icon: '/favicon.png',
                 badge: '/favicon.png',
                 requireInteraction: true,
+                vibrate: [200, 100, 200], // 모바일 진동 추가
             });
         }
     }, [playAlert]);
@@ -53,18 +54,39 @@ export const usePomodoroTimer = () => {
         }
     }, [mode, notifyUser]);
 
+    // switchMode가 변경되면 ref 업데이트 (Worker callback에서 최신값 사용 위함)
+    const switchModeRef = useRef(switchMode);
     useEffect(() => {
-        if (isRunning && timeLeft > 0) {
-            timerRef.current = setInterval(() => {
-                setTimeLeft((prev) => prev - 1);
-            }, 1000);
-        } else if (timeLeft === 0) {
-            // 타이머 종료 (0초 도달)
-            switchMode();
-        }
+        switchModeRef.current = switchMode;
+    }, [switchMode]);
 
-        return () => clearInterval(timerRef.current);
-    }, [isRunning, timeLeft, switchMode]);
+    useEffect(() => {
+        // Web Worker 초기화
+        timerWorkerRef.current = new Worker(new URL('../../../workers/timer.worker.js', import.meta.url));
+
+        timerWorkerRef.current.onmessage = (e) => {
+            const { type, timeLeft: workerTimeLeft } = e.data;
+            if (type === 'TICK') {
+                setTimeLeft(workerTimeLeft);
+            } else if (type === 'COMPLETE') {
+                if (switchModeRef.current) {
+                    switchModeRef.current();
+                }
+            }
+        };
+
+        return () => {
+            if (timerWorkerRef.current) timerWorkerRef.current.terminate();
+        };
+    }, []); // 의존성 제거: Worker는 한 번만 생성됨
+
+    useEffect(() => {
+        if (isRunning) {
+            timerWorkerRef.current.postMessage({ command: 'START', time: timeLeft });
+        } else {
+            timerWorkerRef.current.postMessage({ command: 'PAUSE' });
+        }
+    }, [isRunning, mode]); // 모드 변경 시 시간 리셋하여 재시작
 
     const toggleTimer = async () => {
         if (!isRunning && !isActive) {
@@ -80,7 +102,7 @@ export const usePomodoroTimer = () => {
         setIsActive(false);
         setMode(TIMER_MODE.STUDY);
         setTimeLeft(TIMER_CONSTANTS.STUDY_TIME);
-        if (timerRef.current) clearInterval(timerRef.current);
+        timerWorkerRef.current.postMessage({ command: 'STOP' });
     };
 
     return {

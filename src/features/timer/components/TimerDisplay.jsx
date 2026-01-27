@@ -11,7 +11,11 @@ const TimerDisplay = ({ timeLeft, mode }) => {
                 {isStudy ? 'Focus Time' : 'Break Time'}
             </div>
             <div className={styles.time} role="timer" aria-live="polite">
-                {formatTime(timeLeft)}
+                {formatTime(timeLeft).split('').map((char, index) => (
+                    <span key={index} className={char === ':' ? styles.colon : styles.digit}>
+                        {char}
+                    </span>
+                ))}
             </div>
         </div>
     );

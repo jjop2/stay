@@ -16,16 +16,28 @@
   color: #4b5563;
   /* 부드러운 다크 그레이 */
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
-
-  /* 너비 고정 및 흔들림 방지 */
-  width: 4.8ch;
-  /* 00:00 (5글자)에 맞는 적절한 너비 */
-  text-align: center;
-
   /* 수직 중앙 정렬 보정 */
   padding-top: 0.1ch;
   transform: translateY(-5px);
   /* 폰트 특성에 따른 미세 조정 */
+}
+
+/* 개별 숫자 고정 너비 */
+.digit {
+  display: inline-block;
+  width: 0.6em;
+  /* 숫자 너비 */
+  text-align: center;
+}
+
+.colon {
+  display: inline-block;
+  width: 0.3em;
+  /* 콜론 너비 */
+  text-align: center;
+  position: relative;
+  top: -0.05em;
+  /* 콜론 위치 미세 보정 */
 }
 
 .mode {
@@ -59,7 +71,8 @@
 @media (max-width: 480px) {
   .time {
     font-size: 4.5rem;
-    transform: translateY(-2px); /* 모바일 미세 조정 */
+    transform: translateY(-2px);
+    /* 모바일 미세 조정 */
   }
 
   .mode {
@@ -67,7 +80,7 @@
     padding: 0.4rem 1.2rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .container {
     margin-bottom: 1.5rem;
   }

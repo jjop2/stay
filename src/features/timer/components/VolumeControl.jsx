@@ -1,4 +1,5 @@
 import styles from '../styles/VolumeControl.module.css';
+import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 
 const VolumeControl = ({ volume, onVolumeChange, isMuted, onMuteToggle }) => {
     return (
@@ -8,7 +9,7 @@ const VolumeControl = ({ volume, onVolumeChange, isMuted, onMuteToggle }) => {
                 onClick={onMuteToggle}
                 aria-label={isMuted ? "Unmute" : "Mute"}
             >
-                {isMuted || volume === 0 ? '🔇' : '🔊'}
+                {isMuted || volume === 0 ? <FaVolumeMute /> : <FaVolumeUp />}
             </button>
             <input
                 type="range"
