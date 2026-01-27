@@ -15,10 +15,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  /* 전체 스크롤 방지 (컨테이너 내부 스크롤 사용) */
-  overscroll-behavior: none;
-  /* 당겨서 새로고침/바운스 방지 */
 }
 
 body {
