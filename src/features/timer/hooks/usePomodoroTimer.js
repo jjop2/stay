@@ -21,8 +21,15 @@ export const usePomodoroTimer = () => {
 
     // 최초 시작 시 브라우저 알림 권한 요청
     const requestNotificationPermission = async () => {
-        if (Notification.permission !== 'granted') {
-            await Notification.requestPermission();
+        if (typeof Notification === 'undefined') return; // 브라우저가 알림을 지원하지 않는 경우
+
+        try {
+            if (Notification.permission !== 'granted') {
+                await Notification.requestPermission();
+            }
+        } catch (error) {
+            console.warn('Notification permission request failed:', error);
+            // 알림 권한 실패해도 타이머는 코어 기능이므로 계속 진행
         }
     };
 
