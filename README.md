@@ -3,10 +3,11 @@
 파스텔 톤의 부드러운 디자인과 직관적인 사용성으로 당신의 몰입을 도와줍니다.
 
 ※ 본 프로젝트는 Google Antigravity를 이용하여 만들어졌습니다.  
+🔗[Web 사이트 방문하기](https://staytimer.vercel.app/)
 🔗[Notion 페이지 방문하기](https://short-macaroni-406.notion.site/Stay-2f16bd3dc8f3802db129c2cfb18a7db0?source=copy_link)  
 
 ## ✨ 주요 기능
-![Stay Screenshot](/src/assets/readme/stay_v2_gif.gif)
+![Stay Screenshot](/src/assets/readme/stay_v3_gif.gif)
 
 - **자동 모드 전환**: 50분 집중(Focus) 후 10분 휴식(Break) 모드로 자동 전환됩니다.
 - **백그라운드 알림:** 다른 작업 중에도 집중 / 휴식 모드의 종료 알림을 확인할 수 있습니다.
@@ -17,6 +18,7 @@
 - **Core**: React, Vite
 - **Styling**: CSS Modules, Vanilla CSS
 - **Features**: Web Audio API, Notification API
+- **PWA & Performance**: vite-plugin-pwa, Web Worker, Service Worker
 
 ## 🚀 시작하기
 
